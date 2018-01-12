@@ -1,0 +1,5 @@
+spec:
+    to:
+      kind: Service
+    port:
+      targetPort: rest-svc-tcp

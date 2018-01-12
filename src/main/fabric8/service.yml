@@ -1,0 +1,6 @@
+spec:
+    ports:
+    - name: rest-svc-tcp
+      port: 8666
+      protocol: TCP
+      targetPort: 8666
