@@ -19,15 +19,18 @@ Click Add to Project > Deploy Image
 Select Image Name and enter stilliard/pure-ftpd
 Hit enter to find the image
 Leave defaults and click Create
+
 **Modify the pure-ftpd Service**
 Delete the service that was created by the image
 Import the ftpservice.yml included in this repo
+
 **Create FTP user**
 Open the pod once it is deployed and select the Terminal
 Execute the following command
 ```bash
 pure-pw useradd bob -f /etc/pure-ftpd/passwd/pureftpd.passwd -m -u ftpuser -d /home/ftpusers/bob
 ```
+
 **Deploy FIS container**
 Clone this repository
 cd into the cloned directory

@@ -4,7 +4,7 @@ metadata:
   labels:
     app: pure-ftpd
   name: pure-ftpd
-  namespace: myproject
+  namespace: pure-ftpd
 spec:
   clusterIP: None
   ports:
