@@ -38,6 +38,11 @@ Open the pod once it is deployed and select the Terminal
 Execute the following commands
 ```bash
 pure-pw useradd bob -f /etc/pure-ftpd/passwd/pureftpd.passwd -m -u ftpuser -d /home/ftpusers/bob
+```
+
+Set the password to jmw11jmw
+
+```bash
 mkdir /home/ftpusers/bob/files
 touch /home/ftpusers/bob/files/test.txt
 su -
@@ -57,4 +62,20 @@ mvn fabric8:deploy -Dfabric8.deploy.createExternalUrls=true
 Open the pod once deployed and view the Logs
 
 You should see the log message - Processed test.txt from remote FTP
+
+**Test the dropfile API**
+
+Create a POST request in Postman with the following settings:
+
+URL - {your route URL}/ftp-service/dropfile
+
+Headers
+    Content-Type = application/octet-stream
+    filename = customerfile.txt
+
+Body
+    Select binary
+    Choose a file called customerfile.txt
+
+Send the request and you will see the new file being processed by Camel
 
