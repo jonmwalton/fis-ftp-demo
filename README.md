@@ -70,12 +70,12 @@ Create a POST request in Postman with the following settings:
 URL - {your route URL}/ftp-service/dropfile
 
 Headers
-    Content-Type = application/octet-stream
-    filename = customerfile.txt
+    - Content-Type = application/octet-stream
+    - filename = customerfile.txt
 
 Body
-    Select binary
-    Choose a file called customerfile.txt
+    - Select binary
+    - Choose a file called customerfile.txt
 
 Send the request and you will see the new file being processed by Camel
 
