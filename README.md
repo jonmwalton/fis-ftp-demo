@@ -35,11 +35,14 @@ Import the ftpservice.yml included in this repo
 
 Open the pod once it is deployed and select the Terminal
 
-Execute the following command
+Execute the following commands
 ```bash
 pure-pw useradd bob -f /etc/pure-ftpd/passwd/pureftpd.passwd -m -u ftpuser -d /home/ftpusers/bob
 mkdir /home/ftpusers/bob/files
 touch /home/ftpusers/bob/files/test.txt
+su -
+chgrp ftpgroup /home/ftpusers/bob/files
+chmod 775 /home/ftpusers/bob/files
 ```
 
 **Deploy FIS container**

@@ -1,5 +1,8 @@
+metadata:
+  name: ftp-route
 spec:
-    to:
-      kind: Service
-    port:
-      targetPort: rest-svc-tcp
+  to:
+    name: rest-svc
+    kind: Service
+  port:
+    targetPort: rest-svc-tcp

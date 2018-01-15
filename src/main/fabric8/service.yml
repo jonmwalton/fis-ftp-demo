@@ -1,3 +1,5 @@
+metadata:
+  name: rest-svc
 spec:
     ports:
     - name: rest-svc-tcp

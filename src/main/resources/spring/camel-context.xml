@@ -3,16 +3,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
     <!-- You could also define a traditional camel context here -->
     <camelContext id="camelContext-697a50ff-4dd2-4a6b-8016-1248c47225f9" xmlns="http://camel.apache.org/schema/spring">
-        <restConfiguration bindingMode="json" component="jetty"
+        <restConfiguration bindingMode="off" component="jetty"
             enableCORS="true" host="0.0.0.0" port="8666"/>
-        <rest id="rest-6d9131a7-9a15-41b9-a90f-9b5511b9fdcd" path="/experian-ftp">
+        <rest id="rest-6d9131a7-9a15-41b9-a90f-9b5511b9fdcd" path="/ftp-service">
             <get uri="/retrieve">
                 <to uri="mock:_retrieveFile"/>
+            </get>
+            <get id="testOp" uri="test">
+                <to uri="direct:test" />
             </get>
             <post uri="/dropfile">
                 <to uri="direct:_dropFile"/>
             </post>
         </rest>
+        <route id="testRoute">
+            <from id="testStarter" uri="direct:test" />
+            <log message="received request" />
+            <setBody>
+                <constant>Hello world</constant>
+            </setBody>
+        </route>
         <route id="_pollFTPDirectory">
             <!-- <setBody id="_setBody1">
                 <simple>File processed from ftp:pure-ftpd:21/files</simple>
@@ -22,6 +32,9 @@
         </route>
         <route id="_dropFile">
             <from id="_from2" uri="direct:_dropFile"/>
+            <setHeader headerName="CamelFileName">
+                <simple>${headers.filename}</simple>        
+            </setHeader>
             <log id="_log2" message="Adding ${headers.CamelFileName} to FTP directory"/>
             <to id="_to1" uri="ftp:pure-ftpd:21/files?passiveMode=false&amp;exchangePattern=InOut&amp;password=jmw11jmw&amp;username=bob"/>
         </route>
