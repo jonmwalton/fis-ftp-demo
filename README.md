@@ -56,7 +56,7 @@ Clone this repository
 
 cd into the cloned directory
 ```bash
-mvn fabric8:deploy -Dfabric8.deploy.createExternalUrls=true
+mvn fabric8:deploy
 ```
 
 Open the pod once deployed and view the Logs
